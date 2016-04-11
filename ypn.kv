@@ -1,0 +1,65 @@
+
+# This file uses size_hint for a dynamic layout that'll look okay on different
+# screens. size_hint is a way of saying, "the page's horizontal space should be
+# 15 parts this element and 85 parts this element." Although the specs allow
+# use of any numbers the developer likes, we'll stick with treating the numbers
+# as out of 100, for consistency and ease of visualization.
+# Please make sure your code complies with this standard.
+
+RootWidget:
+
+<RootWidget@BoxLayout>:
+    CalendarPage:
+
+# PAGES
+<CalendarPage@BoxLayout>:
+    orientation: "vertical"
+    
+    YpnHeader:
+        # this widget is size_hint_y 10
+    Button:
+        #right now this is a button only for display purposes.
+        #it's a placeholder anyway.
+        size_hint_y: 50
+        text: "[CALENDAR]"
+    Label:
+        size_hint_y: 10
+        text: "Upcoming Events"
+    Label:
+        size_hint_y: 10
+        text: "Event 1"
+    Label:
+        size_hint_y: 10
+        text: "Event 2"
+    Label:
+        size_hint_y: 10
+        text: "Event 3"
+
+# WIDGETS
+<YpnHeader@BoxLayout>
+    #should contain logo, app-wide search bar, and pulldown menu.
+    #For now this will do.
+    # You have to put this at the top of every Page class you create, but doing
+    # it like this lets you omit the header on certain pages if you choose.
+    
+    orientation: "horizontal"
+    size_hint_y: 10
+    background_color: 0, .36, .60, 1
+    color: .76, .07, .22, 1
+    
+    Label:
+        size_hint_x: 25
+        text: "YPN"
+        #later this will be an image
+    Label:
+        size_hint_x: 50
+        text: "[SEARCH BAR]"
+        #later this will be a search bar
+    Button:
+        size_hint_x: 25
+        text: "///"
+        #later this will be a menu button
+
+
+
+    
