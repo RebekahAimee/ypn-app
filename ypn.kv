@@ -1,12 +1,46 @@
 
+# **What's this file?
+# The kvlang file (this thing you're reading) specifies the layout. Your basic
+# building blocks are built-in "widgets," such as Labels, Buttons, etc (see the
+# documentation on Kivy's site), and you can arrange those to your liking. You
+# can also make custom widgets, like the header. It's basically just a class.
+
+# IMPORTANT!
+# kvlang doesn't take inline comments. You have to put them on separate lines
+# from your actual code, or the interpreter will get really mad and confused.
+
+# CONVENTIONS USED IN THIS CODE (feel free to add yours as you introduce them)
+# **Basics
+# For readability's sake, lines are 80 characters max.
+# Class names use PascalCasing.
+# Indents are 4 spaces. Your text editor's preferences may need to be adjusted,
+# and then they'll take care of that for you.
+
+# **Order/organization
+# Put "bigger" elements nearer the top. For instance, the first item is the
+# root widget, which is basically just a box that swaps out pages. The next
+# items are page widgets, which are just configurations of other widgets.
+# Near the bottom are custom widgets, like our header--they're small stuff that
+# can be placed on a page, like the built-in Kivy widgets (labels and so on).
+
+# **Sizing conventions
 # This file uses size_hint for a dynamic layout that'll look okay on different
 # screens. size_hint is a way of saying, "the page's horizontal space should be
 # 15 parts this element and 85 parts this element." Although the specs allow
 # use of any numbers the developer likes, we'll stick with treating the numbers
 # as out of 100, for consistency and ease of visualization.
-# Please make sure your code complies with this standard.
+
+######################################### Actual code starts here.
 
 RootWidget:
+# ^^^ Hey, see this thing? It's important and you need to know about it.
+# The classes defined in brackets are just classes. This widget here actually
+# tells the interpreter to display the root widget, which starts off showing
+# the Calendar page but can be cleared to display other stuff.
+# If you delete it, you'll get a blank screen.
+# If you replace it with the name of another widget, that one will display
+# instead, which can be a useful debugging tool. Otherwise, don't touch!
+# It's defined just below.
 
 <RootWidget@BoxLayout>:
     CalendarPage:
@@ -16,12 +50,14 @@ RootWidget:
     orientation: "vertical"
     
     YpnHeader:
-        # this widget is size_hint_y 10
+        # the header is size_hint_y 10
     Button:
-        #right now this is a button only for display purposes.
+        #right now this is a button, for display purposes (shows up better)
         #it's a placeholder anyway.
         size_hint_y: 50
         text: "[CALENDAR]"
+        
+    #this really needs to be a ListView/ScrollView combo
     Label:
         size_hint_y: 10
         text: "Upcoming Events"
@@ -35,6 +71,17 @@ RootWidget:
         size_hint_y: 10
         text: "Event 3"
 
+# I'm working on this, ignore for now.
+#<DiscountsPage@BoxLayout>:
+#    orientation: "vertical"
+    
+#    YpnHeader:
+        # the header is size_hint_y 10
+    
+    
+    
+
+
 # WIDGETS
 <YpnHeader@BoxLayout>
     #should contain logo, app-wide search bar, and pulldown menu.
@@ -44,8 +91,6 @@ RootWidget:
     
     orientation: "horizontal"
     size_hint_y: 10
-    background_color: 0, .36, .60, 1
-    color: .76, .07, .22, 1
     
     Label:
         size_hint_x: 25
