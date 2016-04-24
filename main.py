@@ -1,6 +1,5 @@
 from kivy.app import App
-
-#from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.boxlayout import BoxLayout
 #from kivy.uix.anchorlayout import AnchorLayout
 #from kivy.uix.listview import ListView, ListItemButton
 #from kivy.factory import Factory
@@ -9,6 +8,14 @@ from kivy.app import App
 # Python file.
 
 class YpnApp(App):
+    pass
+
+class RootWidget(BoxLayout):
+    def display_discounts_page(self):
+        self.clear_widgets()
+        self.add_widget(DiscountsPage())
+        
+class DiscountsPage(BoxLayout):
     pass
 
 
