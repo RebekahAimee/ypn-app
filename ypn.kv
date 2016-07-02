@@ -63,7 +63,7 @@ RootWidget:
 
 <RootWidget>:
     # inherits from BoxLayout; this widget has its own Python class.
-    CalendarPage:
+    ArticlesPage:
 
 # PAGES
 <CalendarPage@BoxLayout>:
@@ -117,6 +117,43 @@ RootWidget:
         size_hint_y: 20
         text: "Dog Bubbles Grooming"
 
+<ArticlesPage>:
+    #inherits from BoxLayout
+    orientation: "vertical"
+    
+    YpnHeader:
+        #size_hint_y is 10 for this widget
+    
+    ScrollView:
+        size_hint_y: 90
+        BoxLayout:
+            orientation: "vertical"
+            
+            Button:
+                text: "a"
+            Button:
+                text: "a"
+            Button:
+                text: "a"
+            Button:
+                text: "a"
+            Button:
+                text: "a"
+            Button:
+                text: "a"
+            Button:
+                text: "a"
+            Button:
+                text: "a"
+            Button:
+                text: "a"
+            Button:
+                text: "a"
+            Button:
+                text: "a"
+            Button:
+                text: "a"
+
 
 # WIDGETS
 <YpnHeader@BoxLayout>:
@@ -145,7 +182,8 @@ RootWidget:
         size_hint_x: 25
         text: "///"
         on_press: app.root.display_discounts_page()
-        #later this will be a menu button
+        #later this will be a menu button--I think Kivy's "Spinner" widget
+        #would work well for this.
         #for now it JUST goes to Discounts when pressed, in order
         #to check everything is working
 
@@ -178,6 +216,7 @@ RootWidget:
     # these options are pretty general/constant; I feel ok hard-coding them in
     # less appealing is the lack of padding/the fact that the spacing will look
     # kind of off. We'll have to find a way to fix that later.
+    
     Button:
         size_hint_x: 25
         text: "Near Me"

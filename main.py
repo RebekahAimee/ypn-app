@@ -15,9 +15,11 @@ class RootWidget(BoxLayout):
         self.clear_widgets()
         self.add_widget(DiscountsPage())
         
-class DiscountsPage(BoxLayout):
-    pass
+#class DiscountsPage(BoxLayout):
+#    pass
 
+class ArticlesPage(BoxLayout):
+    pass
 
 # This is the code that actually runs the app.
 if __name__ == '__main__':
