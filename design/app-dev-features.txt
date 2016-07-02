@@ -1,0 +1,42 @@
+Feature list for YPN mobile app
+
+Calendar
+Request: Provide access to information about events, and give reminders on
+event days.
+    -Google Calendar
+    -offer ability to export to personal calendar (not important)
+    -phone status page notifications
+    -RSVP feature
+    -info pages on events
+
+Discounts
+Request: Provide a searchable list of member discounts, and a page for each
+discount so the members can show the coupon to restaurant owners to use.
+    -XML database
+Questions: are multiple uses of a discount allowed? How are they currently
+handled--do you just tell the vendor you're a YPN member?
+Answers:
+    -most discounts are repeatable; a few are one-time use on honor system
+    -current system is a business card listing discounts
+    -GPS location to tell you when the discounts are nearby
+
+Articles
+Request: Allow users to view our articles and newsletter from the app.
+    -Is the website currently phone readable?
+     (answer: not very, imho, but the customer seems satisfied with it anyway.)
+Questions: How do you currently update the site? Is it WordPress?
+    -site is WordPress and ostensibly phone readable, just facilitate what's
+    there
+    
+Update regs
+    Calendar: 1x month
+    Articles: 1x year
+    Facebook: 1x day
+    Discounts: 1x year
+    
+YPN manages content updates, but a tech team manages the back end
+
+Notifications for inclement weather (not important)
+"Thanks for coming" if you're in the location at a meeting time
+No financial transactions will be processed through this app.
+

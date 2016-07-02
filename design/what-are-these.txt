@@ -1,0 +1,11 @@
+
+This directory, as initially committed, has eight images and two (other) text
+files in it. The images are from the initial mobile app class when we did the
+design, which was approved by the customer. The text files are schedule- and
+spec-related files from meetings with the customer. Basically, they're my notes
+and I wasn't expecting to use them beyond the class, but here we are. They
+should still be fairly useful to you; I may come back later and tweak them in
+case parts are kind of hard to understand out of context.
+
+--Rebekah
+

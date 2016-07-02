@@ -1,0 +1,67 @@
+VERSION 0 - 1 WEEK
+This week (it shouldn't take longer than a week) is for setting up the
+foundation for the rest of the project: our research, our dev tools, and the UI
+design and framework we'll be dealing with for the rest of the project.
+0.  Set up some kind of version control, such as a classroom git server or a
+    school GitHub account. git is an industry standard and we'll have to learn
+    to use it at some point anyway.
+1.  Someone should research the Google Calendar API and figure out generally
+    how it works.
+2.  Hack together the basics of the user interface--obviously it won't be
+    functional or interactive yet, but we should be able to get some structure
+    put up-- and send some screenshots to our customer. It's important that
+    what we produce matches up fairly well with what they have in mind.
+
+VERSION 1 FEATURES - 3 WEEKS
+The rudimentary version 1 we can blast out in two or three weeks and let them
+start using to figure out what they want. This is just the simplest we can get
+it while retaining its basic functionality.
+0.  Display Google Calendar of events
+1.  On the day of each event, send a notification to the phone status screen.
+2.  Offer a searchable list of discounts through an XML database
+3.  Link to the web site in order to read articles
+4.  Finish up any UI programming we need to do.
+5.  Send it out to the Google Play store.
+
+VERSION 1.5 - 1 WEEK
+0.  Testing, rigorous testing. This might not take all week but we should spend
+    at least one class period trying to bust up our own software.
+1.  Refactoring. Make stuff a little neater if we can.
+2.  Fix any critical bugs our users found in v1. i.e., big security holes. This
+    shouldn't happen--we're not handling transactions--but it should be in our
+    plan anyway.
+
+VERSION 2 FEATURES - 2 WEEKS
+These are upgrades to the stuff we built in v1, shinying things up and making
+the app more useful. We should aim to get these done, because they're like...
+making the app less scraggly and version-1-ey. I would suggest doing a release
+every time we get one of these stable. A short iteration period suits our
+limited time. We're releasing early and often, like an open source project.
+!!!!!! Note that the geolocation thing is most important to the customer !!!!!!
+0.  Anything the customer said they wanted after playing with v1 for a while.
+1.  Allow calendar to export to user's personal calendar app.
+2.  Geolocation to remind user of nearby places to use member discounts.
+3.  Maintain a database of links to individual articles, rather than linking to
+    the site as a whole. This makes things easier to navigate on a phone.
+4.  Maintain a database tracking use of each coupon.
+5.  Fix all the noncritical bugs our users found in Version 1. This WILL be a
+    thing that happens, inevitably.
+
+VERSION 2.5 - 1 WEEK
+0.  More testing. Particularly, ask Muscatine users to try geolocation tools.
+1.  Bug squashing. There should be plenty of these to take care of.
+2.  Wrap up our technical debt as best we can. Get rid of kludgey code, improve
+    our documentation, that sort of thing.
+
+VERSION 3 FEATURES
+Are we really still looking for stuff to do? Careful with this as we don't want 
+to leave bugs in a system we're not continuing to support. We definitely don't 
+need to get all this done.
+0.  RSVP feature for the calendar that sends an email or something to the admin
+1.  Info pages on each event in the calendar
+2.  Single use coupons are marked as such; they can be opened once and used,
+    but then close after five minutes automatically.
+3.  Script that grabs each article's content from the web site and caches it in
+    a format that's friendlier to mobile--maybe work with Pocket or something?
+4.  Offer options for additional text or email messages on event days, through
+    a fancy-looking Settings page.
