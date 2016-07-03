@@ -77,7 +77,13 @@ RootWidget:
         size_hint_y: 50
         text: "[CALENDAR]"
         
-    #this really needs to be a ListView/ScrollView combo
+    # this really needs to be a ListView, not just a bunch of buttons...
+    # except Kivy is working on the ListView concept--they're deprecating it in
+    # favor of an MVC "RecycleView" widget instead, and it doesn't have docs
+    # yet, so it's probably worth waiting a bit to code this piece.
+    # If they don't come out with documentation as soon as we'd like, we can
+    # read the source--but it's not currently a high enough priority to focus
+    # on this yet.
     Label:
         size_hint_y: 10
         text: "Upcoming Events"
@@ -91,7 +97,7 @@ RootWidget:
         size_hint_y: 10
         text: "Event 3"
 
-<DiscountsPage@BoxLayout>:
+<DiscountsPage>:
     # Inherits from BoxLayout, has its own Python class
     orientation: "vertical"
     
@@ -124,38 +130,34 @@ RootWidget:
     YpnHeader:
         #size_hint_y is 10 for this widget
     
-    ScrollView:
-        size_hint_y: 90
-        BoxLayout:
-            orientation: "vertical"
-            
-            Button:
-                text: "a"
-            Button:
-                text: "a"
-            Button:
-                text: "a"
-            Button:
-                text: "a"
-            Button:
-                text: "a"
-            Button:
-                text: "a"
-            Button:
-                text: "a"
-            Button:
-                text: "a"
-            Button:
-                text: "a"
-            Button:
-                text: "a"
-            Button:
-                text: "a"
-            Button:
-                text: "a"
-
+    Button:
+        size_hint_y: 15
+        text: "Summer Cookout"
+    Button:
+        size_hint_y: 15
+        text: "Last Meeting"
+    Button:
+        size_hint_y: 15
+        text: "Members' Dogs"
+    Button:
+        size_hint_y: 15
+        text: "Welcome, New Members!"
+    Button:
+        size_hint_y: 15
+        text: "Food Bank Volunteering"
+    Button:
+        size_hint_y: 15
+        text: "Blood Drive"
+    
+    
+    
+        
 
 # WIDGETS
+
+<TempButton@ListItemButton>:
+    size_hint_y: 10
+
 <YpnHeader@BoxLayout>:
     #should contain logo, app-wide search bar, and pulldown menu.
     #For now this will do.

@@ -15,8 +15,17 @@ class RootWidget(BoxLayout):
         self.clear_widgets()
         self.add_widget(DiscountsPage())
         
-#class DiscountsPage(BoxLayout):
-#    pass
+    #todo: def display_calendar_page(self):
+    #self.clear_widgets()
+    #self.add_widget(CalendarPage())
+    #something like that
+    
+    def display_articles_page(self):
+        self.clear_widgets()
+        self.add_widget(ArticlesPage())
+        
+class DiscountsPage(BoxLayout):
+    pass
 
 class ArticlesPage(BoxLayout):
     pass
