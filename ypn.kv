@@ -1,58 +1,6 @@
 
-# **What's this file?
-# The kvlang file (this thing you're reading) specifies the layout. Your basic
-# building blocks are built-in "widgets," such as Labels, Buttons, etc (see the
-# documentation on Kivy's site), and you can arrange those to your liking. You
-# can also make custom widgets, like the header. It's basically just a class.
-# In other words--
-# The kvlang file is for defining and displaying stuff. The Python file is for
-# program logic, like processing user data (button presses, text entered, etc).
-
-# IMPORTANT!
-# kvlang doesn't take inline comments. You have to put them on separate lines
-# from your actual code, or the interpreter will get really mad and confused.
-
-# CONVENTIONS USED IN THIS CODE (feel free to add yours as you introduce them)
-# **Basics
-# For readability's sake, lines are 80 characters max.
-# Class names use PascalCasing.
-# Method names use "snake" spacing, like foo_bar_method. I'm not that fond of
-# this method because it's slow to type, but it's kind of a Python convention.
-# Indents are 4 spaces. Your text editor's preferences may need to be adjusted,
-# and then they'll take care of that for you.
-# When you make a Python file class for a widget, you declare what its parent
-# class is in the Python file and not here. To save us the trouble of going
-# back to the Python file to figure out what everything inherits from, please
-# just put in a comment about what the parent class is.
-
-# **Order/organization
-# Put "bigger" elements nearer the top. For instance, the first item is the
-# root widget, which is basically just a box that swaps out pages. The next
-# items are page widgets, which are just configurations of other widgets.
-# Near the bottom are custom widgets, like our header--they're small stuff that
-# can be placed on a page, like the built-in Kivy widgets (labels and so on).
-
-# **Sizing conventions
-# This file uses size_hint for a dynamic layout that'll look okay on different
-# screens. size_hint is a way of saying, "the page's horizontal space should be
-# 15 parts this element and 85 parts this element." Although the specs allow
-# use of any numbers the developer likes, we'll stick with treating the numbers
-# as out of 100, for consistency and ease of visualization.
-# Oh, and where I've been black-boxing stuff like custom widgets that include
-# their own size_hints in their definitions, I've been commenting what size
-# they are in the code where I refer to them. Keep doing that, especially for
-# new stuff we're not used to yet.
-
-# Finally: we may, later on, transfer some of my obsessive commenting
-# to a dedicated documentation file once we get so used to knowing this stuff
-# about the code that we're sick of seeing it. But don't just delete it. We
-# won't be the last ones to maintain this system and the next folks probably
-# will not know Kivy.
-
-######################################### Actual code starts here.
-
 RootWidget:
-# ^^^ Hey, see this thing? It's important and you need to know about it.
+# ^^^ This thing is important. Don't delete it.
 # The classes defined in brackets are just classes. This widget here actually
 # tells the interpreter to display the root widget, which starts off showing
 # the Calendar page but can be cleared to display other stuff.
@@ -63,7 +11,7 @@ RootWidget:
 
 <RootWidget>:
     # inherits from BoxLayout; this widget has its own Python class.
-    ArticlesPage:
+    MenuPage:
 
 # PAGES
 <CalendarPage@BoxLayout>:
@@ -130,6 +78,7 @@ RootWidget:
     YpnHeader:
         #size_hint_y is 10 for this widget
     
+    # this should be a RecycleView once that gets documented
     Button:
         size_hint_y: 15
         text: "Summer Cookout"
@@ -149,14 +98,44 @@ RootWidget:
         size_hint_y: 15
         text: "Blood Drive"
     
+<MenuPage@BoxLayout>:
+    orientation: "vertical"
+    MenuHeader:
     
-    
+    MenuButton:
+        text: "Event Calendar"
+    MenuButton:
+        text: "Member Discounts"
+    MenuButton:
+        text: "Newsletter"
+    MenuButton:
+        text: "About Us"
+    MenuButton:
+        text: "Search"
+    Label:
+        #placeholder
+        size_hint_y: 15
+        text: ""
+        
+
+
         
 
 # WIDGETS
 
-<TempButton@ListItemButton>:
+<MenuHeader@BoxLayout>:
+    orientation: "horizontal"
     size_hint_y: 10
+    
+    Label:
+        size_hint_x: 50
+        text: "Main Menu"
+    Button:
+        size_hint_x: 25
+        text: "X"
+    Button:
+        size_hint_x: 25
+        text: "B"
 
 <YpnHeader@BoxLayout>:
     #should contain logo, app-wide search bar, and pulldown menu.
@@ -235,7 +214,8 @@ RootWidget:
         size_hint_x: 25
         text: "Services"
     
-    
+<MenuButton@Button>:
+    size_hint_y: 15
     
     
     
