@@ -1,5 +1,4 @@
 
-# **What's this file?
 # The kvlang file (ypn.kv) specifies the layout. Your basic
 # building blocks are built-in "widgets," such as Labels, Buttons, etc (see the
 # documentation on Kivy's site), and you can arrange those to your liking. You
@@ -38,14 +37,11 @@
 # 15 parts this element and 85 parts this element." Although the specs allow
 # use of any numbers the developer likes, we'll stick with treating the numbers
 # as out of 100, for consistency and ease of visualization.
+# Of course, if you want something to take up only part of the screen, say half
+# of the lateral space, then just giving it size_hint_x 50 isn't going to do
+# anything if it's the only thing in that row.
 # Oh, and where I've been black-boxing stuff like custom widgets that include
 # their own size_hints in their definitions, I've been commenting what size
 # they are in the code where I refer to them. Keep doing that, especially for
 # new stuff we're not used to yet.
-
-# Finally: we may, later on, transfer some of my obsessive commenting
-# to a dedicated documentation file once we get so used to knowing this stuff
-# about the code that we're sick of seeing it. But don't just delete it. We
-# won't be the last ones to maintain this system and the next folks probably
-# will not know Kivy.
 

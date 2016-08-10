@@ -1,3 +1,23 @@
+# The MIT License (MIT)
+# Copyright (c) <year> <copyright holders>
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
 
 RootWidget:
 # ^^^ This thing is important. Don't delete it.
@@ -11,10 +31,18 @@ RootWidget:
 
 <RootWidget>:
     # inherits from BoxLayout; this widget has its own Python class.
+    # It's useful to have a designated root widget because of
+    # self.clear_widgets(), which clears all the /children/ of that widget,
+    # and because app.root stores some important app-wide methods that are
+    # easier to access this way.
+    # There may be a simpler or better-encapsulated way to do these things,
+    # and you're welcome to clean up if so, but just putting MenuPage as root
+    # isn't it.
     MenuPage:
 
 # PAGES
-<CalendarPage@BoxLayout>:
+<CalendarPage>:
+    # inherits from BoxLayout
     orientation: "vertical"
     
     YpnHeader:
@@ -27,11 +55,8 @@ RootWidget:
         
     # this really needs to be a ListView, not just a bunch of buttons...
     # except Kivy is working on the ListView concept--they're deprecating it in
-    # favor of an MVC "RecycleView" widget instead, and it doesn't have docs
-    # yet, so it's probably worth waiting a bit to code this piece.
-    # If they don't come out with documentation as soon as we'd like, we can
-    # read the source--but it's not currently a high enough priority to focus
-    # on this yet.
+    # favor of an MVC "RecycleView" widget instead.
+    # Looks like the documentation on this has come in.
     Label:
         size_hint_y: 10
         text: "Upcoming Events"
@@ -98,27 +123,55 @@ RootWidget:
         size_hint_y: 15
         text: "Blood Drive"
     
-<MenuPage@BoxLayout>:
+<MenuPage>:
+    # inherits from BoxLayout
     orientation: "vertical"
     MenuHeader:
     
     MenuButton:
         text: "Event Calendar"
+        on_press: app.root.display_calendar_page()
     MenuButton:
         text: "Member Discounts"
+        on_press: app.root.display_discounts_page()
     MenuButton:
         text: "Newsletter"
+        on_press: app.root.display_articles_page()
     MenuButton:
         text: "About Us"
+        on_press: app.root.display_about_us_page()
     MenuButton:
         text: "Search"
+        on_press: app.root.display_menu_page()
     Label:
         #placeholder
         size_hint_y: 15
         text: ""
         
-
-
+<AboutUsPage>:
+    # inherits from BoxLayout
+    orientation: "vertical"
+    MenuHeader:
+        # size_hint_y: 10
+    
+    Button:
+        size_hint_y: 30
+        text: "[Group Picture]"
+        
+    BoxLayout:
+        size_hint_y: 15
+        orientation: "horizontal"
+        Button:
+            text: "FAQ"
+        Button:
+            text: "Join Us"
+        Button:
+            text: "Leadership"
+    
+    Label:
+        size_hint_y: 45
+        #sample text
+        text: "The Young Professionals Network is an organization dedicated to..."
         
 
 # WIDGETS
@@ -162,11 +215,8 @@ RootWidget:
     Button:
         size_hint_x: 25
         text: "///"
-        on_press: app.root.display_discounts_page()
-        #later this will be a menu button--I think Kivy's "Spinner" widget
-        #would work well for this.
-        #for now it JUST goes to Discounts when pressed, in order
-        #to check everything is working
+        on_press: app.root.display_menu_page()
+        # if you want a more traditional menu later, try Kivy's Spinner widget
 
 <DiscountSearchBar@BoxLayout>:
     # NOTE FOR NEWBIES TO KIVY who are trying to work on this code
