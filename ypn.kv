@@ -56,7 +56,8 @@ RootWidget:
     # this really needs to be a ListView, not just a bunch of buttons...
     # except Kivy is working on the ListView concept--they're deprecating it in
     # favor of an MVC "RecycleView" widget instead.
-    # Looks like the documentation on this has come in.
+    # Looks like the documentation on this has come in. Not all of it, but
+    # there's always the source code...
     Label:
         size_hint_y: 10
         text: "Upcoming Events"
@@ -151,7 +152,7 @@ RootWidget:
 <AboutUsPage>:
     # inherits from BoxLayout
     orientation: "vertical"
-    MenuHeader:
+    YpnHeader:
         # size_hint_y: 10
     
     Button:
@@ -186,9 +187,11 @@ RootWidget:
     Button:
         size_hint_x: 25
         text: "X"
+        on_press: app.stop()
     Button:
         size_hint_x: 25
         text: "B"
+        on_press: app.root.display_last_page()
 
 <YpnHeader@BoxLayout>:
     #should contain logo, app-wide search bar, and pulldown menu.
