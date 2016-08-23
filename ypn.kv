@@ -1,39 +1,26 @@
+# The MIT License (MIT)
+# Copyright (c) 2016 Young Professionals Network
 
-# **What's this file?
-# The kvlang file (this thing you're reading) specifies the layout. Your basic
-# building blocks are built-in "widgets," such as Labels, Buttons, etc (see the
-# documentation on Kivy's site), and you can arrange those to your liking. You
-# can also make custom widgets, like the header. It's basically just a class.
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
 
-# IMPORTANT!
-# kvlang doesn't take inline comments. You have to put them on separate lines
-# from your actual code, or the interpreter will get really mad and confused.
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
 
-# CONVENTIONS USED IN THIS CODE (feel free to add yours as you introduce them)
-# **Basics
-# For readability's sake, lines are 80 characters max.
-# Class names use PascalCasing.
-# Indents are 4 spaces. Your text editor's preferences may need to be adjusted,
-# and then they'll take care of that for you.
-
-# **Order/organization
-# Put "bigger" elements nearer the top. For instance, the first item is the
-# root widget, which is basically just a box that swaps out pages. The next
-# items are page widgets, which are just configurations of other widgets.
-# Near the bottom are custom widgets, like our header--they're small stuff that
-# can be placed on a page, like the built-in Kivy widgets (labels and so on).
-
-# **Sizing conventions
-# This file uses size_hint for a dynamic layout that'll look okay on different
-# screens. size_hint is a way of saying, "the page's horizontal space should be
-# 15 parts this element and 85 parts this element." Although the specs allow
-# use of any numbers the developer likes, we'll stick with treating the numbers
-# as out of 100, for consistency and ease of visualization.
-
-######################################### Actual code starts here.
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
 
 RootWidget:
-# ^^^ Hey, see this thing? It's important and you need to know about it.
+# ^^^ This thing is important. Don't delete it.
 # The classes defined in brackets are just classes. This widget here actually
 # tells the interpreter to display the root widget, which starts off showing
 # the Calendar page but can be cleared to display other stuff.
@@ -42,11 +29,20 @@ RootWidget:
 # instead, which can be a useful debugging tool. Otherwise, don't touch!
 # It's defined just below.
 
-<RootWidget@BoxLayout>:
-    CalendarPage:
+<RootWidget>:
+    # inherits from BoxLayout; this widget has its own Python class.
+    # It's useful to have a designated root widget because of
+    # self.clear_widgets(), which clears all the /children/ of that widget,
+    # and because app.root stores some important app-wide methods that are
+    # easier to access this way.
+    # There may be a simpler or better-encapsulated way to do these things,
+    # and you're welcome to clean up if so, but just putting MenuPage as root
+    # isn't it.
+    MenuPage:
 
 # PAGES
-<CalendarPage@BoxLayout>:
+<CalendarPage>:
+    # inherits from BoxLayout
     orientation: "vertical"
     
     YpnHeader:
@@ -57,7 +53,11 @@ RootWidget:
         size_hint_y: 50
         text: "[CALENDAR]"
         
-    #this really needs to be a ListView/ScrollView combo
+    # this really needs to be a ListView, not just a bunch of buttons...
+    # except Kivy is working on the ListView concept--they're deprecating it in
+    # favor of an MVC "RecycleView" widget instead.
+    # Looks like the documentation on this has come in. Not all of it, but
+    # there's always the source code...
     Label:
         size_hint_y: 10
         text: "Upcoming Events"
@@ -71,23 +71,173 @@ RootWidget:
         size_hint_y: 10
         text: "Event 3"
 
-# I'm working on this, ignore for now.
-#<DiscountsPage@BoxLayout>:
-#    orientation: "vertical"
+<DiscountsPage>:
+    # Inherits from BoxLayout, has its own Python class
+    orientation: "vertical"
     
-#    YpnHeader:
+    YpnHeader:
         # the header is size_hint_y 10
     
+    DiscountSearchBar:
+        # this is also size_hint_y 10
     
-    
+    Button:
+        size_hint_y: 20
+        text: "Abby's Bakery"
 
+    Button:
+        size_hint_y: 20
+        text: "Benton Bros. Car Wash"
+        
+    Button:
+        size_hint_y: 20
+        text: "Cream of the Crop Farmers Market"
+        
+    Button:
+        size_hint_y: 20
+        text: "Dog Bubbles Grooming"
+
+<ArticlesPage>:
+    #inherits from BoxLayout
+    orientation: "vertical"
+    
+    YpnHeader:
+        #size_hint_y is 10 for this widget
+    
+    # this should be a RecycleView once that gets documented
+    Button:
+        size_hint_y: 15
+        text: "Summer Cookout"
+    Button:
+        size_hint_y: 15
+        text: "Last Meeting"
+    Button:
+        size_hint_y: 15
+        text: "Members' Dogs"
+    Button:
+        size_hint_y: 15
+        text: "Welcome, New Members!"
+    Button:
+        size_hint_y: 15
+        text: "Food Bank Volunteering"
+    Button:
+        size_hint_y: 15
+        text: "Blood Drive"
+    
+<MenuPage>:
+    # inherits from BoxLayout
+    orientation: "vertical"
+    MenuHeader:
+    
+    MenuButton:
+        text: "Event Calendar"
+        on_press: app.root.display_calendar_page()
+    MenuButton:
+        text: "Member Discounts"
+        on_press: app.root.display_discounts_page()
+    MenuButton:
+        text: "Newsletter"
+        on_press: app.root.display_articles_page()
+    MenuButton:
+        text: "About Us"
+        on_press: app.root.display_about_us_page()
+    MenuButton:
+        text: "Search"
+        on_press: app.root.display_search_page()
+    Label:
+        #placeholder
+        size_hint_y: 15
+        text: ""
+        
+<AboutUsPage>:
+    # inherits from BoxLayout
+    orientation: "vertical"
+    YpnHeader:
+        # size_hint_y: 10
+    
+    Button:
+        size_hint_y: 30
+        text: "[Group Picture]"
+        
+    BoxLayout:
+        size_hint_y: 15
+        orientation: "horizontal"
+        Button:
+            text: "FAQ"
+        Button:
+            text: "Join Us"
+        Button:
+            text: "Leadership"
+    
+    Label:
+        size_hint_y: 45
+        #sample text
+        text: "The Young Professionals Network is an organization dedicated to..."
+
+<SearchPage>:
+    # inherits from BoxLayout
+    orientation: "vertical"
+
+    YpnHeader:
+        # size_hint_y: 10
+
+    BoxLayout:
+        orientation: "horizontal"
+        size_hint_y: 10
+
+        TextInput:
+            multiline: False
+            size_hint_x: 80
+
+        Button:
+            text: "Search"
+            size_hint_x: 20
+
+    Button:
+        size_hint_y: 80
+        text: "Placeholder for search results"
+
+
+<RVTestDrivePage>:
+    # Not a recreational vehicle.
+    # None of this is working right now. RecycleView won't even import.
+    viewclass: "Button"
+    RecycleBoxLayout:
+    # ^ undocumented widget, grabbing sample code
+        default_size: None, dp(56)
+        default_size_hint: 1, None
+        size_hint_y: None
+        height: self.minimum_height
+        orientation: 'vertical'
 
 # WIDGETS
-<YpnHeader@BoxLayout>
+
+<MenuHeader@BoxLayout>:
+    orientation: "horizontal"
+    size_hint_y: 10
+    
+    Label:
+        size_hint_x: 50
+        text: "Main Menu"
+    Button:
+        size_hint_x: 25
+        text: "X"
+        on_press: app.stop()
+    Button:
+        size_hint_x: 25
+        text: "B"
+        on_press: app.root.display_last_page()
+
+<YpnHeader@BoxLayout>:
     #should contain logo, app-wide search bar, and pulldown menu.
     #For now this will do.
-    # You have to put this at the top of every Page class you create, but doing
-    # it like this lets you omit the header on certain pages if you choose.
+    # You have to specify there's a YpnHeader widget at the top of every Page
+    # class you create, but doing it like this (as opposed to building it into
+    # a Page class that the other pages inherit from) lets you omit the header
+    # on certain pages if you choose. On the one hand, DRY, but on the other,
+    # inheritance is not a panacea, and this is probably the best method since
+    # it lends us a bit of flexibility in exchange for repeating one short,
+    # easily-understood line of code.
     
     orientation: "horizontal"
     size_hint_y: 10
@@ -103,7 +253,62 @@ RootWidget:
     Button:
         size_hint_x: 25
         text: "///"
-        #later this will be a menu button
+        on_press: app.root.display_menu_page()
+        # if you want a more traditional menu later, try Kivy's Spinner widget
+
+<DiscountSearchBar@BoxLayout>:
+    # NOTE FOR NEWBIES TO KIVY who are trying to work on this code
+    # Making this functional will mean some more complex logic stuff over in
+    # the Python document, to retrieve the TextBox's value when the button is
+    # tapped. If I remember right, whenever you need to do processing on user
+    # data in a particular element or whatever, you need to import the
+    # appropriate Kivy widgets/layouts/whatever you're using into your Python
+    # code file and write the logic there.
+    #
+    # That's not to deter you from learning how this works and trying to code
+    # it--this note is just to steer you in the right direction. Just remember:
+    # logic goes in the Python code, display definitions go in the kvlang file.
+    
+    orientation: "horizontal"
+    size_hint_y: 10
+    
+    TextInput:
+        size_hint_x: 60
+    
+    Button: 
+        size_hint_x: 40
+        text: "Search Discounts"
+        
+<DiscountSearchKeywords@BoxLayout>:
+    orientation: "horizontal"
+    
+    # these options are pretty general/constant; I feel ok hard-coding them in
+    # less appealing is the lack of padding/the fact that the spacing will look
+    # kind of off. We'll have to find a way to fix that later.
+    
+    Button:
+        size_hint_x: 25
+        text: "Near Me"
+        
+    Button:
+        size_hint_x: 25
+        text: "Food"
+    
+    Button:
+        size_hint_x: 25
+        text: "Items"
+    
+    Button:
+        size_hint_x: 25
+        text: "Services"
+    
+<MenuButton@Button>:
+    size_hint_y: 15
+    
+    
+    
+    
+    
 
 
 
