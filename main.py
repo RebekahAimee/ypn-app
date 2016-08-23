@@ -21,6 +21,7 @@
 
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
+#from kivy.uix.recycleview import RecycleView
 #from kivy.uix.anchorlayout import AnchorLayout
 #from kivy.uix.listview import ListView, ListItemButton
 #from kivy.factory import Factory
@@ -59,9 +60,10 @@ class RootWidget(BoxLayout):
         self.add_widget(AboutUsPage())
         self.last_page_open = "abo"
     
-    #def display_search_page(self):
-    #    self.clear_widgets()
-    #    self.add_widget(SearchPage())
+    def display_search_page(self):
+        self.clear_widgets()
+        self.add_widget(SearchPage())
+        self.last_page_open = "sea"
     
     def display_menu_page(self):
         self.clear_widgets()
@@ -80,21 +82,39 @@ class RootWidget(BoxLayout):
             self.display_articles_page()
         if self.last_page_open == "abo":
             self.display_about_us_page()
+        if self.last_page_open == "sea":
+            self.display_search_page()
+        # otherwise do nothing because you done screwed up your programming
         
+    #class RVTestDrivePage(RecycleView):
+     #   pass
+
+
+
+# I feel like these classes really should be OO'd into one class...
+# They really are basically all the same
 class CalendarPage(BoxLayout):
+    # I've found that the pages are hard to tell apart without color. Well,
+    # some people are colorblind anyway, so maybe we should put a nice header
+    # at the top of each page. In place of the search bar, I think, because
+    # search really should be its own page, accessible via the menu page.
+    name = "Event Calendar"
     pass
 
 class DiscountsPage(BoxLayout):
+    name = "Member Discounts"
     pass
 
 class ArticlesPage(BoxLayout):
+    name = "Newsletter"
     pass
 
 class AboutUsPage(BoxLayout):
+    name = "About Us"
     pass
 
-#class SearchPage(BoxLayout):
-#    pass
+class SearchPage(BoxLayout):
+    pass
 
 class MenuPage(BoxLayout):
     pass
