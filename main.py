@@ -34,20 +34,20 @@ class YpnApp(App):
     pass
 
 class RootWidget(BoxLayout):
-    # variable to contain a three-char slug denoting the last non-menu page
-    # opened by user. Used by the Back button on the menu.
     # nts: this might be kind of weird with the discounts page if the menu
     # button isn't disabled while coupons are open. make sure there's no way
     # for users to "cheat" for multiple uses of coupons.
     def __init__(self):
         super(RootWidget, self).__init__()
+        self.name = 'Root'
         self.last_page_open = CalendarPage()
-
+        
     def display_page(self, page):
         self.clear_widgets()
         self.last_page_open = page
         self.add_widget(page)
 
+    # There might be a way to cut down on repeated code here by calling direct from the app class? But then we might want different logic for different pages.
     def display_calendar_page(self):
         self.display_page(CalendarPage())
 
@@ -71,7 +71,7 @@ class RootWidget(BoxLayout):
     def display_last_page(self):
         if self.last_page_open:
             self.display_page(self.last_page_open)
-        # otherwise do nothing because you done screwed up your programming
+        # otherwise do nothing because you done screwed up your programming (still relevant)
         
     #class RVTestDrivePage(RecycleView):
      #   pass
@@ -80,6 +80,7 @@ class RootWidget(BoxLayout):
 
 # I feel like these classes really should be OO'd into one class...
 # They really are basically all the same
+# Leaving separate classes as-is for now - may want to make different in future
 class CalendarPage(BoxLayout):
     # I've found that the pages are hard to tell apart without color. Well,
     # some people are colorblind anyway, so maybe we should put a nice header
@@ -89,6 +90,9 @@ class CalendarPage(BoxLayout):
 
 class DiscountsPage(BoxLayout):
     name = "Member Discounts"
+    def search_button(self, search_bar):
+        # May want to put this in root if there's a lot of common logic
+        print search_bar.ids['search_input'].text
         
 class ArticlesPage(BoxLayout):
     name = "Newsletter"
@@ -101,6 +105,8 @@ class SearchPage(BoxLayout):
     
 class MenuPage(BoxLayout):
     name = "Menu"
+
+    
 
 # This is the code that actually runs the app.
 if __name__ == '__main__':
