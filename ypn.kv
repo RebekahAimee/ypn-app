@@ -223,9 +223,9 @@ RootWidget:
         size_hint_x: 25
         text: "X"
         on_press: app.stop()
-    Button:
+    Button: 
         size_hint_x: 25
-        text: "B"
+        text: "Back"
         on_press: app.root.display_last_page()
 
 <YpnHeader@BoxLayout>:
@@ -252,7 +252,7 @@ RootWidget:
         #later this will be a search bar
     Button:
         size_hint_x: 25
-        text: "///"
+        text: "To menu"
         on_press: app.root.display_menu_page()
         # if you want a more traditional menu later, try Kivy's Spinner widget
 
@@ -274,9 +274,11 @@ RootWidget:
     
     TextInput:
         size_hint_x: 60
+        id: search_input
     
     Button: 
         size_hint_x: 40
+        on_press: self.parent.parent.search_button(self.parent)
         text: "Search Discounts"
         
 <DiscountSearchKeywords@BoxLayout>:
@@ -293,7 +295,7 @@ RootWidget:
     Button:
         size_hint_x: 25
         text: "Food"
-    
+ 
     Button:
         size_hint_x: 25
         text: "Items"
